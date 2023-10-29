@@ -5,10 +5,10 @@
 	
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="project-code/mysite/application/style.css">
+    
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
-	<title>{% block title %}Dog Comparison Tool{% endblock %}</title>
+	<title>{% block title %}Dog Comparison Tool {% endblock %}</title>
 </head>
 
 <body style="background-color:#f2f2f2">
@@ -66,19 +66,30 @@
             to look at a different breed, hit the reset button next to the search bar.
         </p>          
     </div>
-
+   
     <div class="container">
         <div class="row">
           <div class="col">
+            <!--<form method="GET">
+              <input type = "text" name = "name" placeholder="Search..." class = "text-center">
+              <button type = "submit" class = "btn-danger btn-sm">SEARCH MEAL</button>
+            </form> 
+          -->
             <!--Search DOG BREED 1-->
-            <div class="input-group md-form form-sm form-1 pl-0">
-                <div class="input-group-prepend">
-                  <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
-                      aria-hidden="true"></i>Breed 1</span>
+           <div class="input-group md-form form-sm form-1 pl-0">
+               
+              <div class="input-group-prepend">
+                <form method="GET">
+                    <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
+                      aria-hidden="true"></i>Breed 1</span> 
                 </div>
-                <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+              
+                <input name ="name" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" >
+                <button type = "submit" class = "btn-danger btn-sm">SEARCH BREED</button>
+              </form>
             </div>
           </div>
+        
           
           <div class="col">
             <!-- SEARCH DOG BREED 2 -->
@@ -88,10 +99,11 @@
                     aria-hidden="true"></i>Breed 2</span>
                 </div>
                 <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+                <button type = "submit" class = "btn-danger btn-sm">SEARCH BREED</button>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="padding-bottom: 2%;">
           <div class="col">
             <!-- Table for breed 1-->
             <div class="table1">
@@ -102,28 +114,35 @@
                     </tr>
                     </thead>
                     <tbody>
+                      {% for dog in todos%}
                         <tr>
                             <th scope="row">Breed Name</th>
-                            <td>Bulldog</td>
+                            <td>{{ dog.name }}</td>
                         </tr>
                         <tr>
                             <th scope="row">Photo</th>
-                            <td>INSERT PHOTO HERE</td>
+                            <td><img class="dog-breed-photo" src="{{all_dogs.image_url}}"></td>
                         </tr>
                         <tr>
                             <th scope="row">Life Span</th>
-                            <td>8 - 10 yrs</td>
+                            <td>{{ dog.age }}</td>
                         </tr>
                         <tr>
                             <th scope="row">Weight</th>
-                            <td>50 lbs</td>
+                            <td>{{ dog.weight }}</td>
                         </tr>
                         <tr>
+                          <th scope="row">Height</th>
+                          <td>{{ dog.height }}</td>
+                      </tr>
+                        <tr>
                             <th scope="row">Common Traits</th>
-                            <td>Social, Stubborn</td>
+                            <td>{{ dog.traits }}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
+                
             </div>
           </div>
           
@@ -164,6 +183,7 @@
         </div>
       </div>
     </div>
+   
     
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
