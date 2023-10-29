@@ -95,33 +95,36 @@
             <!-- SEARCH DOG BREED 2 -->
             <div class="input-group md-form form-sm form-1 pl-0">
                 <div class="input-group-prepend">
-                <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
-                    aria-hidden="true"></i>Breed 2</span>
+                <form method="GET">
+                  <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
+                      aria-hidden="true"></i>Breed 2</span>
                 </div>
-                <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+                <input name="name2" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
                 <button type = "submit" class = "btn-danger btn-sm">SEARCH BREED</button>
+              </form>
             </div>
           </div>
         </div>
         <div class="row" style="padding-bottom: 2%;">
           <div class="col">
             <!-- Table for breed 1-->
-            <div class="table1">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col" style:"text-align:center;">Selected Breed Facts</th>
+            <div class="table1" style="background-color: #f2f2f2">
+                <table class="table table-hover" style="border:2px solid; border-color:black; margin-top: 4%;">
+                    <thead class="table-dark">
+                    <tr style="border: 1px solid;">
+                        <th  scope="col" style:"text-align:center;border:1px;>Breed 1 Facts</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                      {% for dog in todos%}
+                      {% for dog in table1%}
                         <tr>
                             <th scope="row">Breed Name</th>
                             <td>{{ dog.name }}</td>
                         </tr>
                         <tr>
                             <th scope="row">Photo</th>
-                            <td><img class="dog-breed-photo" src="{{all_dogs.image_url}}"></td>
+                            <td><img class="dog-breed-photo" src="{{MEDIA_URL}}{{all_dogs.image_url}}"></td>
                         </tr>
                         <tr>
                             <th scope="row">Life Span</th>
@@ -129,11 +132,11 @@
                         </tr>
                         <tr>
                             <th scope="row">Weight</th>
-                            <td>{{ dog.weight }}</td>
+                            <td>{{ dog.weight }} lbs.</td>
                         </tr>
                         <tr>
                           <th scope="row">Height</th>
-                          <td>{{ dog.height }}</td>
+                          <td>{{ dog.height }} in.</td>
                       </tr>
                         <tr>
                             <th scope="row">Common Traits</th>
@@ -148,34 +151,41 @@
           
           <div class="col">
             <!--DOG BREED TABLE 2-->
-            <div class="table1">
-                <table class="table">
-                    <thead>
+            <div class="table2" style="background-color: #f2f2f2"">
+                <table class="table table-hover" style="border:2px solid; border-color:black; margin-top: 4%;">
+                    <thead class="table-dark">
                       <tr>
-                        <th scope="col" style:"text-align:center;">Selected Breed Facts</th>
+                        <th scope="col" style:"text-align:center;border:1px;>Breed 2 Facts</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
+                      {% for dog in table2%}
                         <tr>
                             <th scope="row">Breed Name</th>
-                            <td>Bulldog</td>
+                            <td>{{dog.name}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Photo</th>
-                            <td>INSERT PHOTO HERE</td>
+                            <td><img class="dog-breed-photo" src="{{MEDIA_URL}}{{all_dogs.image_url}}"></td>
                         </tr>
                         <tr>
                             <th scope="row">Life Span</th>
-                            <td>8 - 10 yrs</td>
+                            <td>{{dog.age}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Weight</th>
-                            <td>50 lbs</td>
+                            <td>{{dog.weight}} lbs.</td>
                         </tr>
                         <tr>
+                          <th scope="row">Height</th>
+                          <td>{{dog.height}} in.</td>
+                      </tr>
+                        <tr>
                             <th scope="row">Common Traits</th>
-                            <td>Social, Stubborn</td>
+                            <td>{{dog.traits}}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                   </table>
                 </div>
