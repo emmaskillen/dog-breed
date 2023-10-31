@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+	<title>{% block title %}Dog Comparison Tool {% endblock %}</title>
+</head>
+
+<body style="background-color:#f2f2f2">
+
+<!-- HEADER -->
+<div>
+    <div class="jumbotron" style="background-color:#2b6777;">
+    <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      <h1>Dog Breed Search</h1>
+      <p style="font-style:italic;">A Tool to Help You Choose Your Next Best Friend</p>
+    </div>
+    </div>
+  </div>
+
+  
+<!--
+<div class="border border-success p-2 mb-2" style="background-color:black; border-color:black;">
+	<div id="content" name="content" class="main">
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<h1 class="mt-2" style="text-align:center; 
+                    border-color:blueviolet; 
+                    padding: 20%;
+                    color: rgb(42, 42, 167);
+                    "
+                
+                >Dog Comparison Tool</h1>
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</div>
+-->
+<!--Upper Body: Description:-->
+<div class="main-section-center" style="margin: auto; width: 90%; padding: 20px; background-color:#c8d8e4;">
+    <!-- Description -->
+    <div class="container">
+        <div class="page-header">
+        <h1>The What:</h1>      
+        </div>
+        <p>This search tool is designed to help you decide on a dog breed. The search feature below
+            allows you to quickly compare two dog breeds and their dog breed facts. The side by
+            side comparison is there to make the decision making process more efficient. 
+        </p>            
+    </div>
+
+
+    <!-- How to Use -->
+    <div class="container">
+        <div class="page-header">
+        <h1>The How:</h1>      
+        </div>
+        <p>Please enter two dog breeds in the search bars below. Once you have entered those,
+            hit the search button and watch the tables populate with your chosen breeds. In order
+            to look at a different breed, hit the reset button next to the search bar.
+        </p>          
+    </div>
+   
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <!--<form method="GET">
+              <input type = "text" name = "name" placeholder="Search..." class = "text-center">
+              <button type = "submit" class = "btn-danger btn-sm">SEARCH MEAL</button>
+            </form> 
+          -->
+            <!--Search DOG BREED 1-->
+           <div class="input-group md-form form-sm form-1 pl-0">
+               
+              <div class="input-group-prepend">
+                <form method="GET">
+                    <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
+                      aria-hidden="true"></i>Breed 1</span> 
+                </div>
+              
+                <input name ="name" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" >
+                <button type = "submit" class = "btn-danger btn-sm">SEARCH BREED</button>
+              </form>
+            </div>
+          </div>
+        
+          
+          <div class="col">
+            <!-- SEARCH DOG BREED 2 -->
+            <div class="input-group md-form form-sm form-1 pl-0">
+                <div class="input-group-prepend">
+                <form method="GET">
+                  <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
+                      aria-hidden="true"></i>Breed 2</span>
+                </div>
+                <input name="name2" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+                <button type = "submit" class = "btn-danger btn-sm">SEARCH BREED</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-bottom: 2%;">
+          <div class="col">
+            <!-- Table for breed 1-->
+            <div class="table1" style="background-color: #f2f2f2">
+                <table class="table table-hover" style="border:2px solid; border-color:black; margin-top: 4%;">
+                    <thead class="table-dark">
+                    <tr style="border: 1px solid;">
+                        <th  scope="col" style:"text-align:center;border:1px;>Breed 1 Facts</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      {% for dog in table1%}
+                        <tr>
+                            <th scope="row">Breed Name</th>
+                            <td>{{ dog.name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Photo</th>
+                            <td><img class="dog-breed-photo" src="{{MEDIA_URL}}{{all_dogs.image_url}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Life Span</th>
+                            <td>{{ dog.age }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Weight</th>
+                            <td>{{ dog.weight }} lbs.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Height</th>
+                          <td>{{ dog.height }} in.</td>
+                      </tr>
+                        <tr>
+                            <th scope="row">Common Traits</th>
+                            <td>{{ dog.traits }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+            </div>
+          </div>
+          
+          <div class="col">
+            <!--DOG BREED TABLE 2-->
+            <div class="table2" style="background-color: #f2f2f2"">
+                <table class="table table-hover" style="border:2px solid; border-color:black; margin-top: 4%;">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col" style:"text-align:center;border:1px;>Breed 2 Facts</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for dog in table2%}
+                        <tr>
+                            <th scope="row">Breed Name</th>
+                            <td>{{dog.name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Photo</th>
+                            <td><img class="dog-breed-photo" src="{{MEDIA_URL}}{{all_dogs.image_url}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Life Span</th>
+                            <td>{{dog.age}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Weight</th>
+                            <td>{{dog.weight}} lbs.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Height</th>
+                          <td>{{dog.height}} in.</td>
+                      </tr>
+                        <tr>
+                            <th scope="row">Common Traits</th>
+                            <td>{{dog.traits}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</div>
+    <!-- Remove the container if you want to extend the Footer to full width. -->
+<div style="padding-top:2.5%;">
+    <footer class="text-center text-lg-start" style="background-color: #2b6777; padding:2%;">
+      <!-- Copyright -->
+      <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">Emma Skillen</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </div>
+  <!-- End of .container -->
+
+</body>
+</html>

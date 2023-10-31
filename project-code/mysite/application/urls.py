@@ -3,8 +3,9 @@ from application import views
 
 
 urlpatterns = [
-    path('', views.application, name='application'),
-    #path('', views.table2, name='table2'),
+    path('', views.table_1, name='table_1'),
+    path('', views.table_2, name='table_2'),
+    
    # path('', views.get_dogs, name = "get_dogs"),
 
 ]

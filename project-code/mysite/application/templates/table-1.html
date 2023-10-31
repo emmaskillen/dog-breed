@@ -1,0 +1,44 @@
+
+
+<!-- Table for breed 1-->
+<div class="table1" style="background-color: #f2f2f2">
+    <table class="table table-hover" style="border:2px solid; border-color:black; margin-top: 4%;">
+        <thead class="table-dark">
+        <tr style="border: 1px solid;">
+            <th  scope="col" style:"text-align:center;border:1px;>Breed 1 Facts</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for dog in table1%}
+            <tr>
+                <th scope="row">Breed Name</th>
+                <td>{{ dog.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Photo</th>
+                <td><img class="dog-breed-photo" src="{{MEDIA_URL}}{{all_dogs.image_url}}"></td>
+            </tr>
+            <tr>
+                <th scope="row">Life Span</th>
+                <td>{{ dog.age }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Weight</th>
+                <td>{{ dog.weight }} lbs.</td>
+            </tr>
+            <tr>
+              <th scope="row">Height</th>
+              <td>{{ dog.height }} in.</td>
+          </tr>
+            <tr>
+                <th scope="row">Common Traits</th>
+                <td>{{ dog.traits }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+

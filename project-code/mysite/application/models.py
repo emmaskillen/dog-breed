@@ -21,4 +21,4 @@ class Dog_2(models.Model):
     image_url_2 = models.ImageField( max_length=50, blank = True, null = True)
 
     def __str__(self):
-        return self.name
+        return self.name_2
