@@ -3,9 +3,9 @@ from application import views
 
 
 urlpatterns = [
-    path('', views.table_1, name='table_1'),
-    path('', views.table_2, name='table_2'),
-    
+    path('', views.application, name='application'),
+    #path('search/', views.search_view, name='search_view'),
+    path('search/', views.search_view, name='search_view'),
    # path('', views.get_dogs, name = "get_dogs"),
 
 ]
