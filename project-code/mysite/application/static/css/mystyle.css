@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Unbounded:wght@500&display=swap');
+
+:root {
+    --dark-blue: #2b8677;
+    --light-blue: #c8d8e4;
+    --off-white: #ffffff;
+    --grey: #f2f2f2;
+    --green: #52ab98;
+    --pink: #dc3545; 
+}
+
+
+/* header */
+h1 {
+    font-family: Anton; 
+}
+
+.search-div-1 {
+    float: left;  
+}
+.search-div-2 {
+    float:right;
+}
+
+
+.skip-div {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /* to wrap the button */
+  }
+  
+  .button-wrapper {
+    width: 50%;
+    /* width of the button */
+    padding: 0 10px;
+    /* to add some spaces between buttons */
+    margin-bottom: 10px;
+    /* margin for button */
+  }
+  
+  .btn-info {
+    width: 80%;
+    text-decoration: none;
+    font-size: 1.8em;
+    background-color: var(--pink);
+    color: white;
+    text-align:center;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .btn-info:hover{
+    text-decoration: none;
+    background-color: white;
+    color:var(--pink);
+    border-color: var(--pink);
+    border-style: solid;
+}
+
+/* Instruction skip button (link) */
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1px;
+    place-items: center;
+  }
+  
+  .box {
+    color: #fff;
+    border-radius: 3px;
+    padding: 2px;
+    font-size: 14px;
+  }
+
+#photo-boxes {
+    margin-bottom: 2%;
+    align-items: center;
+}
+
+.fun-facts {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
