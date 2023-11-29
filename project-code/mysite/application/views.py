@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 from application.models import Dog, Dog_2
 from .forms import searchForm, searchForm2
+from django.views.decorators.csrf import csrf_exempt
 
 # display main page
 def application(request):
@@ -15,22 +16,6 @@ def search_view(request):
 
     if breed1_name:
         table1 = grab_data_1(breed1_name)
-        
-        """response = requests.get('https://api.algobook.info/v1/dogs/search/%s' % breed1_name)
-        table1 = response.json()
-
-        for i in table1:   
-                dog_data = Dog(
-                        name = i['name'],
-                        age = i['lifespan'],
-                        weight = i['weightLbs'],
-                        height = i['heightInches'],
-                        traits = i['temperament'],
-                        image_url = i['imgUrl']
-                        )
-        dog_data.save()
-        table1 = Dog.objects.filter(name=dog_data.name).order_by('-id')[:1]
-        """
     else:
         table1 = None
 
@@ -89,10 +74,14 @@ def grab_data_2(name2):
         table2 = Dog_2.objects.filter(name_2=dog_data_2.name_2).order_by('-id')[:1]
     return table2
 
-
-
-
-
+# press button for dog fact, call on microservice 
+@csrf_exempt
+def fun_fact_button(request):
+    if request.method == "POST":
+        URL = "http://127.0.0.1:8004/fact"
+        response = requests.get(URL)
+        fact = response.json()["data"][0]["attributes"]["body"]
+        return render(request, 'application.html', {'fact':fact})
 
 
 """

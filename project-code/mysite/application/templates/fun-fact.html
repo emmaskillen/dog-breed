@@ -1,5 +1,41 @@
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Shadows+Into+Light&family=Unbounded:wght@500&display=swap" rel="stylesheet">
+<div class="jumbotron" style="margin-top:3%;">
+    <div class="container">
+        <div class="row">
+            <div class="col text-left">
+                <h1 class="display-4">Fun Fact Generator</h1>
+                <p class="lead">Press the button below to view a random dog fun fact!</p>
+                <hr class="my-4">
+                <p class="lead">
+                        <form name="fact-form" method="POST" action="{% url 'fun_fact_button' %}">
+                            <button type="submit" class="btn btn-danger btn-rounded btn-lg" data-mdb-ripple-color="#42388a"> Generate Random Fact</button>
+                        </form>
+                </p>
+            </div>
+        <div class="col center-block text-center text-white align-self-center" style= 
+        "font-family: 'Shadows Into Light'; background:#2b6777">
+        <p style="font-size:35px; font-style: italic;">{{ fact }}</p>
+    
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
 
-<h1>Fun Fact Generator</h1>
+<!--
+<h1>Fun Fact Generator</h1>col-xs-2
 <p>Press the button below to view a random dog fun fact!</p>
-<button type="button" class="btn btn-danger btn-rounded   btn-lg" data-mdb-ripple-color="#42388a"> Generate Random Fact</button>
+<form name="fact-form" method="POST" action="{% url 'fun_fact_button' %}">
+<button type="submit" class="btn btn-danger btn-rounded   btn-lg" data-mdb-ripple-color="#42388a"> Generate Random Fact</button>
+</form>
+
+<div style="width: 18rem;" class="card bg-light mb-3">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Random Fact:</h5>
+      <p class="card-text"><p>{{ fact }}</p></p>
+    </div>
+</div>
+
+-->
 
