@@ -8,7 +8,8 @@
                 <hr class="my-4">
                 <p class="lead">
                         <form name="fact-form" method="POST" action="{% url 'fun_fact_button' %}">
-                            <button type="submit" class="btn btn-danger btn-rounded btn-lg" data-mdb-ripple-color="#42388a"> Generate Random Fact</button>
+                            <button onclick="window.location.href = '/fact#fun-facts'"
+                             type="submit" class="btn btn-danger btn-rounded btn-lg" data-mdb-ripple-color="#42388a"> Generate Random Fact</button>
                         </form>
                 </p>
             </div>

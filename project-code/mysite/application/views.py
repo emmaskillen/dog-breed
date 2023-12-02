@@ -83,7 +83,6 @@ def fun_fact_button(request):
         fact = response.json()["data"][0]["attributes"]["body"]
         return render(request, 'application.html', {'fact':fact})
 
-
 """
 def search_view(request):
     table1 = []
