@@ -3,6 +3,7 @@ import requests
 from application.models import Dog, Dog_2
 from .forms import searchForm, searchForm2
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 # display main page
 def application(request):
@@ -78,10 +79,13 @@ def grab_data_2(name2):
 @csrf_exempt
 def fun_fact_button(request):
     if request.method == "POST":
+    #if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         URL = "http://127.0.0.1:8004/fact"
         response = requests.get(URL)
         fact = response.json()["data"][0]["attributes"]["body"]
-        return render(request, 'application.html', {'fact':fact})
+        #return JsonResponse({'fact':fact})
+    
+    return render(request, 'application.html', {'fact':fact})#, #{'fact':fact})
 
 """
 def search_view(request):
