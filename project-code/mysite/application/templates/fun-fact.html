@@ -3,13 +3,14 @@
 <div class="jumbotron" style="margin-top:3%;">
     <div class="container">
         <div class="row">
+            {% csrf_token %}
             <div class="col text-left">
                 <h1 class="display-4">Fun Fact Generator</h1>
                 <p class="lead">Press the button below to view a random dog fun fact!</p>
                 <hr class="my-4">
                 <p class="lead">
-                        <form name="fact-form" method="POST" action="{% url 'fun_fact_button' %}">
-                            <button id='fact-button'onclick="window.location.href = '/fact#fun-facts'"
+                        <form name="fact-form" method="POST" action="">
+                            <button id='fact-button' onclick=""
                              type="submit" class="btn btn-danger btn-rounded btn-lg" data-mdb-ripple-color="#42388a"> Generate Random Fact</button>
                         </form>
                 </p>
@@ -23,26 +24,43 @@
     </div>
 </div>
 
-
-<!--
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#fact-button').on('click', function () {
-                // Make an AJAX request to get a random dog fact
-                $.ajax({
-                    type: 'GET',
-                    url: 'fun_fact_button/',
-                    dataType: 'json',
-                    success: function (response) {
-                        // Update the content of the factContainer
-                        $('#fact-response').html('<p>' + response.fact + '</p>');
-                    },
-                    error: function (error) {
-                        console.log('Error:', error);
-                    }
-                });
-            });
+<!-- use FETCH to avoid reload page after fun-fact button is pressed -->
+<script>
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+    }
+    
+    async function postData(url = "application.html", data = {}) {
+        const csrftoken = getCookie('csrftoken');
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrftoken,
+          },
+          body: JSON.stringify(data),
         });
-    </script>
--->
+        return response.json();
+    }
+  
+    document.getElementById("fact-button").addEventListener("click", (event) => {
+      event.preventDefault();
+      postData(url="{% url 'fun_fact_button' %}")
+      .then((response) => { 
+        document.getElementById("fact-response").innerHTML = response.fact
+       });
+      });
+  </script>
+

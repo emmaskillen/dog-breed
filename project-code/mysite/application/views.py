@@ -76,16 +76,17 @@ def grab_data_2(name2):
     return table2
 
 # press button for dog fact, call on microservice 
-@csrf_exempt
+#@csrf_exempt
 def fun_fact_button(request):
-    if request.method == "POST":
+    #fact = "Fun Fact"
+    #if request.method == "POST":
     #if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        URL = "http://127.0.0.1:8004/fact"
-        response = requests.get(URL)
-        fact = response.json()["data"][0]["attributes"]["body"]
+    URL = "http://127.0.0.1:8004/fact"
+    response = requests.get(URL)
+    fact = response.json()["data"][0]["attributes"]["body"]
         #return JsonResponse({'fact':fact})
-    
-    return render(request, 'application.html', {'fact':fact})#, #{'fact':fact})
+    return JsonResponse({'fact': fact})
+    #return render(request, 'application.html', {'fact':fact})#, #{'fact':fact})
 
 """
 def search_view(request):
