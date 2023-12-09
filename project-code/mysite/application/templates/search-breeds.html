@@ -1,16 +1,164 @@
 
-<div class="input-group md-form form-sm form-1 pl-0">           
-    <div class="input-group-prepend">
-      <form name="form1" method="GET" action="{% url 'search_view' %}">
-          <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
-            aria-hidden="true"></i>Breed 1</span> 
+<!-- Search + Table (2x2 grid) -->
+    <h1 style="text-align:center;">Dog Breed Search:</h1>
+    <p style="text-align:center;">Enter two dog breeds here and then hit search:</p>
+    <div class="row">
+      <div class="col">
+        <div class="input-group md-form form-sm form-1 pl-0">           
+            <div class="input-group-prepend">
+              <form name="form1" method="POST" action="">
+                {% csrf_token %}
+                  <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
+                    aria-hidden="true"></i>Breed 1</span> 
+            </div>
+            <input id="name"name ="name" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+            <span style="margin-left:2.5%;"class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
+                aria-hidden="true"></i>Breed 2</span> 
+            <input id="name2"name ="name2" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+            <button id='search-breed-button'style="margin-left:2.5%;"  onclick="" type = "submit" class="btn-danger btn-sm">SEARCH BREED</button>
+        </form>
+            <a href="./#breed-search" style="margin-left:2.5%;text-decoration:none;" class = "btn-danger btn-sm">RESET</a>
+        </div>
+      </div>
     </div>
-    <input name ="name" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
-    <span style="margin-left:2.5%;"class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
-        aria-hidden="true"></i>Breed 2</span> 
-    <input name ="name2" class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
-    <button style="margin-left:2.5%;" type = "submit" class = "btn-danger btn-sm">SEARCH BREED</button>
-    </form>
-    <a href="./#breed-search" style="margin-left:2.5%;text-decoration:none;" class = "btn-danger btn-sm">RESET</a>
-</div>
+    <div class="row">
+        <p>{{context}}</p>
+       <div class="col">
+            <div class="table1" style="background-color: #c8d8e4">
+                <table class="table table-hover" style="border:2px solid; border-color:black; margin-top: 4%;">
+                    <thead style="background-color: #2b6777;color:white;">
+                    <tr style="border: 1px solid;">
+                        <th scope="col" style:"border:1px;">Breed 1 Facts</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="breed-display-1">
+                        <tr>
+                            <th scope="row">Breed Name</th>
+                            <td id="name-1-display"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Photo</th>
+                            <td><img  id="image_url-1-display" class="dog-breed-photo" src="" width="300px" height="300px"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Life Span</th>
+                            <td id="age-1-display"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Weight</th>
+                            <td id="weight-1-display"> lbs.</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Height</th>
+                        <td id="height-1-display"> in.</td>
+                    </tr>
+                        <tr>
+                            <th scope="row">Common Traits</th>
+                            <td id="traits-1-display"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <!--DOG BREED TABLE 2-->
+            <div class="table2" style="background-color: #c8d8e4">
+                <table class="table table-hover" style="border:2px solid; border-color:black; margin-top: 4%;">
+                <thead style="background-color: #2b6777;color:white;">
+                    <tr style="border: 1px solid;">
+                        <th scope="col" style:"border:1px;">Breed 2 Facts</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="breed-display-2">
+                        <tr>
+                            <th scope="row">Breed Name</th>
+                            <td id="name-2-display"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Photo</th>
+                            <td><img id="image_url-2-display" class="dog-breed-photo" src="" width="300px" height="300px"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Life Span</th>
+                            <td id="age-2-display"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Weight</th>
+                            <td id="weight-2-display"> lbs.</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Height</th>
+                        <td id="height-2-display"> in.</td>
+                    </tr>
+                        <tr>
+                            <th scope="row">Common Traits</th>
+                            <td id="traits-2-display"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
+
+<!-- use FETCH to avoid reload page after fun-fact button is pressed  {% url 'search_view' %} {% for dog_2 in table2%}{% endfor %}-->
+<script>
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+    }
+    
+    async function postData(url = "application.html", data = {}) {
+        const csrftoken = getCookie('csrftoken');
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrftoken,
+          },
+          body: JSON.stringify(data),
+        });
+        return response.json();
+    }
+    // save values from search input and display corresponding data for each breed
+    document.getElementById("search-breed-button").addEventListener("click", (event) => {
+      event.preventDefault();
+      const dog_1 = document.getElementById("name").value;
+      const dog_2 = document.getElementById("name2").value;
+      
+      postData(url="{% url 'search_view' %}", {dog_1: dog_1, dog_2: dog_2})
+      .then((response) => { 
+        const table1_data = response.context.table1[0]; // table 1 - dog breed 1
+        const table2_data = response.context.table2[0]; // table 2 - dog breed 2
+        // dog breed 1 data display:
+        document.getElementById("name-1-display").innerHTML = table1_data.name
+        document.getElementById("image_url-1-display").src = table1_data.image_url
+        document.getElementById("age-1-display").innerHTML = table1_data.age
+        document.getElementById("weight-1-display").innerHTML = table1_data.weight + " lbs"
+        document.getElementById("height-1-display").innerHTML = table1_data.height + " in."
+        document.getElementById("traits-1-display").innerHTML = table1_data.traits
+
+        // dog breed 2 display:
+        document.getElementById("name-2-display").innerHTML = table2_data.name_2
+        document.getElementById("image_url-2-display").src = table2_data.image_url_2
+        document.getElementById("age-2-display").innerHTML = table2_data.age_2
+        document.getElementById("weight-2-display").innerHTML = table2_data.weight_2 + " lbs"
+        document.getElementById("height-2-display").innerHTML = table2_data.height_2 + " in."
+        document.getElementById("traits-2-display").innerHTML = table2_data.traits_2
+       });
+      });
+  </script>
+  

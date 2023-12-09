@@ -4,10 +4,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-
-
 <!-- HEADER -->
-
 <div>
   <div class="jumbotron" style="background-color:#2b6777;">
   <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2)">
@@ -23,11 +20,7 @@
   </div>
 </div>
 
-<!--{% include 'photos.html' %}-->
-
-
 <!--Upper Body: Description:-->
-
 <div class="main-section-center" style="margin: auto; width: 90%; padding: 20px; background-color:#c8d8e4;">
   <!-- Description -->
   <div class="jumbotron" style="margin-top:3%;">
@@ -72,27 +65,8 @@
   </div>
 </div>
 
-
-
-<!-- Search + Table (2x2 grid) -->
 <div class="container" style="margin-top: 5%;" id="breed-search">
-  <h1 style="text-align:center;">Dog Breed Search:</h1>
-  <p style="text-align:center;">Enter two dog breeds here and then hit search:</p>
-  <div class="row">
-    <div class="col">
-      {% include 'search-breeds.html' %}
-    </div>
-  </div>
-  <div class="row">
-     <div class="col">
-       <!-- SEARCH DOG BREED 1 -->
-       {% include 'table-1.html' %}
-     </div>
-     <div class="col">
-       <!-- SEARCH DOG BREED 1 -->
-       {% include 'table-2.html' %}
-     </div>
- </div>
+  {% include 'search-breeds.html' %}
 </div>
 
 <!-- Fun fact button -->
@@ -105,15 +79,5 @@
 
 
 
- <!--Scrolling saved with refresh
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) { 
-      var scrollpos = localStorage.getItem('scrollpos');
-      if (scrollpos) window.scrollTo(0, scrollpos);
-  });
 
-  window.onbeforeunload = function(e) {
-      localStorage.setItem('scrollpos', window.scrollY);
-  };
-</script>
--->
+
